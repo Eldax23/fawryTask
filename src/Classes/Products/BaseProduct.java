@@ -4,7 +4,7 @@ package Classes.Products;
 import Interfaces.Products.IProduct;
 
 // this is the base product class which we will only inherit from therefore -> abstract
-abstract class BaseProduct implements IProduct {
+public abstract class BaseProduct implements IProduct {
     private String name;
     private double price;
     private int quantity;
@@ -33,8 +33,16 @@ abstract class BaseProduct implements IProduct {
         return quantity;
     }
 
+    @Override
+    public void buyProduct(int quantity) {
+        if(quantity > this.quantity) {
+            throw new ArithmeticException("quantity required is higher than products count");
+        }
 
+        this.quantity -= quantity;
+    }
 
+    // overriding toString() for  readability needs.
     @Override
     public String toString() {
         return "Product: [" + getName() + "]\n" +
