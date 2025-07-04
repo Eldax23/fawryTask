@@ -16,8 +16,8 @@ public class ExpirableProduct extends  BaseProduct implements IExpirableProduct 
 
     @Override
     public boolean isExpired() {
-        int compareDates = LocalDate.now().compareTo(expiryDate);
-        return compareDates > 0;
+        if(expiryDate == null) return false;
+        return LocalDate.now().isAfter(expiryDate);
     }
 
     @Override

@@ -1,13 +1,16 @@
 package Classes.Products;
 
+import Interfaces.Products.IProduct;
 import Interfaces.Products.IShippableProduct;
 
-public class ShippableProduct extends NormalProduct implements IShippableProduct {
-    private int weight;
-    public ShippableProduct(String name, double price, int quantity , int weight) {
-        super(name, price, quantity);
+public class ShippableProduct implements IProduct , IShippableProduct {
+    private IProduct product;
+    private double weight;
+    public ShippableProduct(IProduct product , double weight) {
+        this.product = product;
         this.weight = weight;
     }
+
 
 
     @Override
@@ -15,4 +18,24 @@ public class ShippableProduct extends NormalProduct implements IShippableProduct
         return weight;
     }
 
+
+    @Override
+    public String getName() {
+        return product.getName();
+    }
+
+    @Override
+    public double getPrice() {
+        return product.getPrice();
+    }
+
+    @Override
+    public int getQuantity() {
+        return product.getQuantity();
+    }
+
+    @Override
+    public void buyProduct(int quantity) {
+        product.buyProduct(quantity);
+    }
 }

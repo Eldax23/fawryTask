@@ -23,7 +23,11 @@ public class CheckoutService implements ICheckoutService {
         ArrayList<CartItem> cartItems = cart.getCartItems();
 
         double priceOfCart = cart.calcPrice();
-        double shippingFee = shippingService.calcShippingFees(cartItems);
+        double shippingFee = 0;
+        ArrayList<CartItem> shippableProducts = cart.getShippableProducts();
+        if(!shippableProducts.isEmpty()) {
+            shippingFee = shippingService.calcShippingFees(cart.getShippableProducts());
+        }
         double totalPrice = priceOfCart + shippingFee;
 
 
@@ -38,7 +42,6 @@ public class CheckoutService implements ICheckoutService {
         //shipping...
 
 
-        ArrayList<CartItem> shippableProducts = cart.getShippableProducts();
 
         if(shippableProducts.size() > 0) shippingService.shipProducts(shippableProducts);
 

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class ShoppingCart implements IShoppingCart {
 
-    private ArrayList<CartItem> cart;
+    private ArrayList<CartItem> cart = new ArrayList<CartItem>();
 
     @Override
     public void addToCart(IProduct prd, int quantity) {
