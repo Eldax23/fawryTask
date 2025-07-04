@@ -23,7 +23,8 @@ public abstract class BaseProduct implements IProduct {
 
     @Override
     public void reduceQuantity(int amount) {
-        this.quantity -= 1;
+        if(quantity < amount) throw new IllegalArgumentException("there is no enough quantity");
+        quantity -= amount;
     }
 
     public String getName() {

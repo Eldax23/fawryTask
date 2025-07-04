@@ -3,6 +3,7 @@ package Services.Checkout;
 import Classes.Cart.CartItem;
 import Classes.Cart.ShoppingCart;
 import Classes.Customer;
+import Classes.Products.ExpirableProduct;
 import Classes.Products.ShippableProduct;
 import Interfaces.Products.IProduct;
 import Services.Shipping.IShippingService;
@@ -21,6 +22,15 @@ public class CheckoutService implements ICheckoutService {
 
         if(cart.getCartItems().size() <= 0) throw  new IllegalArgumentException("there is no products in cart");
         ArrayList<CartItem> cartItems = cart.getCartItems();
+
+        for (CartItem item : cartItems) {
+            IProduct product = item.getProduct();
+            if (product.getQuantity() <= 0) {
+                throw new IllegalStateException("Product " + product.getName() +
+                        (product instanceof ExpirableProduct && ((ExpirableProduct) product).isExpired() ?
+                                " is expired" : " is out of stock"));
+            }
+        }
 
         double priceOfCart = cart.calcPrice();
         double shippingFee = 0;
@@ -43,6 +53,9 @@ public class CheckoutService implements ICheckoutService {
 
 
 
+        for(CartItem item : cart.getCartItems()) {
+            item.getProduct().reduceQuantity(item.getQuantity());
+        }
 
         if(shippableProducts.size() > 0) shippingService.shipProducts(shippableProducts);
 

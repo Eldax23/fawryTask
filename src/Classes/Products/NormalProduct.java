@@ -14,8 +14,5 @@ public class NormalProduct extends  BaseProduct implements IProduct {
         return super.toString();
     }
 
-    @Override
-    public void reduceQuantity(int amount) {
-        reduceQuantity(amount);
-    }
+
 }
