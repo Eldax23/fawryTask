@@ -14,4 +14,6 @@ public class ShippableProduct extends NormalProduct implements IShippableProduct
     public double getWeight() {
         return weight;
     }
+
+
 }

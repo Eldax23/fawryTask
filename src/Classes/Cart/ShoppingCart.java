@@ -1,5 +1,6 @@
 package Classes.Cart;
 
+import Classes.Products.ExpirableProduct;
 import Interfaces.Cart.IShoppingCart;
 import Interfaces.Products.IProduct;
 
@@ -16,6 +17,8 @@ public class ShoppingCart implements IShoppingCart {
         //check if there is enough stock for the required quantity.
         if(prd.getQuantity() < quantity) throw new IllegalArgumentException("requested amount exceeds our current stock.");
 
+        if(prd instanceof ExpirableProduct && ((ExpirableProduct) prd).isExpired())
+            throw new IllegalArgumentException("this product's expiry date is due.");
 
         cart.add(new CartItem(prd , quantity));
     }
