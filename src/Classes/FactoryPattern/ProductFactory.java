@@ -12,7 +12,7 @@ import java.time.LocalDate;
 // APLLYING FACTORY DESIGN PATTERN
 public class ProductFactory {
     public static IProduct createProduct(ProductType type , String name , double price ,
-                                         int quantity , LocalDate expiryDate , double weight) {
+                                         int quantity , LocalDate expiryDate) {
         IProduct res;
         switch(type) {
             case ProductType.Expirable -> {

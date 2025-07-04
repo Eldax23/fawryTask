@@ -17,7 +17,7 @@ public class ShippingService implements IShippingService {
             System.out.println(item.getQuantity() + "x  " + prd.getName() + "    " + prd.getWeight() * 1000 + "g");
 
             double weight = prd.getWeight();
-            int quantity = prd.getQuantity();
+            int quantity = item.getQuantity();
             totWeight += weight * quantity;
         }
 

@@ -5,5 +5,5 @@ public interface IProduct {
     double getPrice();
     int getQuantity();
     void buyProduct(int quantity);
-
+    void reduceQuantity(int amount);
 }

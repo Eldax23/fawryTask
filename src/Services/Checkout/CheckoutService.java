@@ -43,6 +43,7 @@ public class CheckoutService implements ICheckoutService {
 
 
 
+
         if(shippableProducts.size() > 0) shippingService.shipProducts(shippableProducts);
 
         printReceipt(cart , priceOfCart , shippingFee);
@@ -52,7 +53,7 @@ public class CheckoutService implements ICheckoutService {
 
     public void printReceipt(ShoppingCart cart , double subtotal , double shippingFee) {
         System.out.println("** Checkout receipt **");
-        ArrayList<CartItem> cartItems = new ArrayList<CartItem>();
+        ArrayList<CartItem> cartItems = cart.getCartItems();
         for(CartItem item : cartItems) {
             IProduct prd = item.getProduct();
             System.out.println(item.getQuantity() + "x   " + item.getProduct().getName() + "    " + item.getProduct().getPrice());
@@ -61,7 +62,7 @@ public class CheckoutService implements ICheckoutService {
         System.out.println("--------------------------------------");
         System.out.println("Subtotal: " + subtotal);
         System.out.println("Shipping: " + shippingFee);
-        System.out.println("Amount: " + subtotal + shippingFee);
+        System.out.println("Amount: " + (subtotal + shippingFee));
     }
 
 }

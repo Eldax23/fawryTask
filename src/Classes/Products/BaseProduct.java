@@ -21,6 +21,11 @@ public abstract class BaseProduct implements IProduct {
         this.quantity = -1;
     }
 
+    @Override
+    public void reduceQuantity(int amount) {
+        this.quantity -= 1;
+    }
+
     public String getName() {
         return name;
     }

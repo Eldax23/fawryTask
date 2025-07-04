@@ -38,4 +38,9 @@ public class ShippableProduct implements IProduct , IShippableProduct {
     public void buyProduct(int quantity) {
         product.buyProduct(quantity);
     }
+
+    @Override
+    public void reduceQuantity(int amount) {
+        product.reduceQuantity(amount);
+    }
 }
