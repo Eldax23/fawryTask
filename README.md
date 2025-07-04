@@ -28,6 +28,6 @@ A robust e-commerce system implementing SOLID principles and design patterns for
 
 ### Installation
 ```bash
-git clone https://github.com/your-repo/ecommerce-system.git
-cd ecommerce-system
+git clone https://github.com/Eldax23/fawryTask.git
+cd fawryTask
 mvn clean install
