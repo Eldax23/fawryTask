@@ -1,8 +1,8 @@
 package Classes.Products;
 
-import Interfaces.Shipping.IShippable;
+import Interfaces.Products.IShippableProduct;
 
-public class ShippableProduct extends NormalProduct implements IShippable {
+public class ShippableProduct extends NormalProduct implements IShippableProduct {
     private int weight;
     public ShippableProduct(String name, double price, int quantity , int weight) {
         super(name, price, quantity);
