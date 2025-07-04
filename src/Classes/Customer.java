@@ -21,6 +21,10 @@ public class Customer {
         return balance;
     }
 
+    public void pay(double amount) {
+        this.balance -= amount;
+    }
+
     @Override
     public String toString() {
         return "Name: " + this.getName() + "\nBalance: " + this.getBalance() + "\n";

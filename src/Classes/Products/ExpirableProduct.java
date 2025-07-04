@@ -9,7 +9,7 @@ import java.util.Date;
 public class ExpirableProduct extends  BaseProduct implements IExpirableProduct {
     private LocalDate expiryDate;
 
-    ExpirableProduct(String name , double price , int quantity , Date expiryDate) {
+    public ExpirableProduct(String name , double price , int quantity , LocalDate expiryDate) {
         super(name , price , quantity);
 
     }

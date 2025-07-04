@@ -1,6 +1,7 @@
 package Classes.Cart;
 
 import Classes.Products.ExpirableProduct;
+import Classes.Products.ShippableProduct;
 import Interfaces.Cart.IShoppingCart;
 import Interfaces.Products.IProduct;
 
@@ -10,6 +11,7 @@ public class ShoppingCart implements IShoppingCart {
 
     private ArrayList<CartItem> cart;
 
+    @Override
     public void addToCart(IProduct prd, int quantity) {
         //check if the product is in stock:
         if(prd.getQuantity() < 0) throw new NullPointerException("this product isn't currently available.");
@@ -23,6 +25,8 @@ public class ShoppingCart implements IShoppingCart {
         cart.add(new CartItem(prd , quantity));
     }
 
+
+    @Override
     public double calcPrice() {
         double sum = 0;
         for(int i = 0; i < cart.size(); i++) {
@@ -36,7 +40,21 @@ public class ShoppingCart implements IShoppingCart {
     }
 
 
+    @Override
     public ArrayList<CartItem> getCartItems() {
         return new ArrayList<CartItem>(cart);
+    }
+
+    @Override
+    public ArrayList<CartItem> getShippableProducts() {
+        ArrayList<CartItem> res = new ArrayList<CartItem>();
+
+        for(CartItem item : cart) {
+            if(item.getProduct() instanceof ShippableProduct) {
+                res.add(item);
+            }
+        }
+
+        return res;
     }
 }
